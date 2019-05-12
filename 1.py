@@ -14,10 +14,30 @@ def operation():
     first_num = request_body["firstNumber"]
     second_num = request_body["secondNumber"]
     op = request_body["operation"]
-    print(first_num)
-    print(second_num)
-    print(op)
-    return jsonify({"message" : " "})
+
+    if op == "add":
+        result = first_num + second_num
+        res_op = "addition"
+    elif op == "sub":
+        result = first_num - second_num
+        res_op = "subtraction"
+    elif op == "div":
+        result = first_num / second_num
+        res_op = "division"
+    elif op == "mul":
+        result = first_num * second_num
+        res_op = "multiplication"
+    else:
+        result = 0
+        res_op = "invalid"
+
+    return jsonify({
+        "message" : "success",
+        "firstNumber" : first_num,
+        "secondNumber" : second_num,
+        "operationPerformed" : res_op,
+        "result" : result
+        })
 
 
 app.run(port = 5000, debug = True)
